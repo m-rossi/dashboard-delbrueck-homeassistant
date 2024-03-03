@@ -1,0 +1,13 @@
+{
+    "domain": "dashboard_delbrueck",
+    "name": "Dashboard Delbrück",
+    "codeowners": ["@m-rossi"],
+    "config_flow": true,
+    "dependencies": [],
+    "documentation": "https://github.com/m-rossi/dashboard-delbrueck-homeassistant",
+    "integration_type": "device",
+    "iot_class": "cloud_polling",
+    "issue_tracker": "https://github.com/m-rossi/dashboard-delbrueck-homeassistant/issues",
+    "requirements": ["requests"],
+    "version": "2024.3.0"
+}
