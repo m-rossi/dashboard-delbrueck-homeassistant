@@ -56,12 +56,16 @@ class DashboardDelbrueckSensor(SensorEntity):
         await self.hass.async_add_executor_job(self.update)
 
     def update(self):
-        data = self._api.get_sensor_value(self._sensor_id)
-        if self.device_class == SensorDeviceClass.ENUM:
-            self._attr_native_value = WIND_BEARINGS[data["value"]]
-        else:
-            self._attr_native_value = data["value"]
-            self._attr_native_unit_of_measurement = UNIT_CONVERTER[data["unit"]]
+        try:
+            data = self._api.get_sensor_value(self._sensor_id)
+            if self.device_class == SensorDeviceClass.ENUM:
+                self._attr_native_value = WIND_BEARINGS[data["value"]]
+            else:
+                self._attr_native_value = data["value"]
+                self._attr_native_unit_of_measurement = UNIT_CONVERTER[data["unit"]]
+        except (ValueError, ConnectionError):
+            self._attr_available = False
+            self._attr_native_value = None
 
 
 def replace_umlauts(text: str) -> str:
