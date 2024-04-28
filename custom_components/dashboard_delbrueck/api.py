@@ -17,7 +17,7 @@ class DashboardDelbrueckApi:
         return self._station_id
 
     def get_sensor_value(self, sensor_id: int) -> dict:
-        url = f"{self._base_url}/w-single-sensor-{sensor_id}/{self._station_id}"
+        url = f"{self._base_url}/w-single-sensor-{sensor_id}/{self.station_id}"
         response = requests.get(url).json()
         return {
             "sensor_id": sensor_id,
