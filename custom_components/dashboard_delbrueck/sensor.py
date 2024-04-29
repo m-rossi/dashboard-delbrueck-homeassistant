@@ -64,7 +64,6 @@ class DashboardDelbrueckSensor(SensorEntity):
                 self._attr_native_value = data["value"]
                 self._attr_native_unit_of_measurement = UNIT_CONVERTER[data["unit"]]
         except (ValueError, ConnectionError):
-            self._attr_available = False
             self._attr_native_value = None
 
 
