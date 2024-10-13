@@ -1,3 +1,6 @@
+import datetime
+from zoneinfo import ZoneInfo
+
 from homeassistant.components.sensor import SensorEntity, SensorDeviceClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
@@ -58,6 +61,13 @@ class DashboardDelbrueckSensor(SensorEntity):
     def update(self):
         try:
             data = self._api.get_sensor_value(self._sensor_id)
+            if data["timestamp"] < datetime.datetime.now(
+                ZoneInfo("Europe/Berlin")
+            ) - datetime.timedelta(hours=1):
+                raise ValueError(
+                    "Data is older than an hour, weather station may be offline, value"
+                    " will not be stored."
+                )
             if self.device_class == SensorDeviceClass.ENUM:
                 self._attr_native_value = WIND_BEARINGS[data["value"]]
             else:
