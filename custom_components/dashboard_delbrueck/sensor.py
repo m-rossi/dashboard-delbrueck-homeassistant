@@ -75,6 +75,8 @@ class DashboardDelbrueckSensor(SensorEntity):
                 self._attr_native_unit_of_measurement = UNIT_CONVERTER[data["unit"]]
         except (ValueError, ConnectionError):
             self._attr_native_value = None
+            if "unit" in data and data["unit"] in UNIT_CONVERTER:
+                self._attr_native_unit_of_measurement = UNIT_CONVERTER[data["unit"]]
 
 
 def replace_umlauts(text: str) -> str:
