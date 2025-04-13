@@ -10,6 +10,10 @@ This [HomeAssistant](https://www.home-assistant.io)-integration adds the sensors
 
 of the weather stations of the [City Dashboard of Delbrück](https://dashboard-delbrueck.regioit.de).
 
+## Installation
+
+Install the integration using [Home Assistant Community Store (HACS)](https://hacs.xyz/docs/use/).
+
 ## Development
 
 ### Development in [devcontainer](https://code.visualstudio.com/docs/devcontainers/containers)
